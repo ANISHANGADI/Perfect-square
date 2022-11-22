@@ -1,0 +1,24 @@
+class Solution {
+    private :
+    int func(int n,vector<int>&dp)
+    {
+        if(n==0)
+            return 0;
+        if(dp[n]!=-1)
+            return dp[n];
+        int count=INT_MAX;
+       // int c;
+        for(int num=1;num<=sqrt(n);num++)
+        {
+                int  s=num*num;
+                int  mcount=1+func(n-s,dp);
+               count = min(mcount,count);
+        }
+        return dp[n]=count;
+    }
+public:
+    int numSquares(int n) {
+        vector<int>dp(n+1,-1);
+        return func(n,dp);
+    }
+};
